@@ -1,6 +1,7 @@
 <?php
 include ('../includes/admin_protection.php'); 
 include ('../includes/db_connect.php'); 
+include ('../includes/phan_trang.php')
 ?>
 <!DOCTYPE html>
 <html>
@@ -11,8 +12,8 @@ include ('../includes/db_connect.php');
 </head>
 <body>
     <?php 
-
-        $sql = 'select MaTheLoai, TenTheLoai from theloai ORDER BY TenTheLoai ASC';
+        $p = new Phan_trang(2);
+        $sql = 'select MaTheLoai, TenTheLoai from theloai ORDER BY TenTheLoai ASC LIMIT '.$p->getLimitPage();
         $result = mysqli_query($conn,$sql);
 
         echo "<p align='center'><font size='5px' style='font-weight: bold;'>THÔNG TIN THỂ LOẠI</font></p>";
@@ -63,7 +64,7 @@ include ('../includes/db_connect.php');
             }
         }
         echo "</table>";
-        
+        $p->paging(mysqli_query($conn,"SELECT * FROM theloai"));
         mysqli_close($conn);
      ?>
      <div style="text-align:center; margin-top:20px;">
