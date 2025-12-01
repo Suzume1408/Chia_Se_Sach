@@ -16,7 +16,7 @@ $masach = isset($_GET['masach']) ? trim($_GET['masach']) : '';
 $id = isset($_GET['id']) ? trim($_GET['id']) : '';
 $from = isset($_GET['from']) ? $_GET['from'] : '';
 
-// 1.2: Xử lý POST
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $conn = mysqli_connect("localhost","root","","chiasesach") or die("Không kết nối được MySQL");
